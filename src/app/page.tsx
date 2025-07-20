@@ -12,9 +12,9 @@ import { Footer } from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen container max-w-screen-2xl mx-auto px-4 ">
+    <div className="min-h-screen">
       <Header />
-      <main>
+      <main className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <HeroSection />
         <PopularChannels />
         <QualitySection />
