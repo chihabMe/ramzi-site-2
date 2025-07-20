@@ -159,14 +159,14 @@ for (let i = 4; i <= 8; i++) {
   });
 }
 
-interface BlogDetailPageProps {
-  params: {
-    id: string;
-  };
-}
-
-export default function BlogDetailPage({ params }: BlogDetailPageProps) {
-  const article = allArticles.find((a) => a.id === parseInt(params.id));
+export default async function BlogDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
+  const article = allArticles.find((a) => a.id === parseInt(id));
 
   if (!article) {
     notFound();

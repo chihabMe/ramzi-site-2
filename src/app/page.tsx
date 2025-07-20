@@ -8,7 +8,6 @@ import { HowItWorks } from "@/components/HowItWorks";
 import { DeviceCompatibility } from "@/components/DeviceCompatibility";
 import { Testimonials } from "@/components/Testimonials";
 import { BlogSection } from "@/components/BlogSection";
-import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {

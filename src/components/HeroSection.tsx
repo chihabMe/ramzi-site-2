@@ -79,7 +79,7 @@ export function HeroSection() {
                 size="lg"
                 className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg"
               >
-                S'abonner maintenant
+                S&apos;abonner maintenant
               </Button>
               <Button
                 size="lg"

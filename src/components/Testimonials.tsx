@@ -5,21 +5,24 @@ const testimonials = [
   {
     name: "Marie Benoît",
     rating: 5,
-    comment: "Excellent service ! La qualité d'image est parfaite et le support client très réactif. Je recommande vivement IPTV Pro.",
-    avatar: "👩"
+    comment:
+      "Excellent service ! La qualité d'image est parfaite et le support client très réactif. Je recommande vivement IPTV Pro.",
+    avatar: "👩",
   },
   {
-    name: "David Durant", 
+    name: "David Durant",
     rating: 5,
-    comment: "Plus de 13 000 chaînes, c'est incroyable ! Je trouve tout ce que je veux regarder. L'installation a été très simple.",
-    avatar: "👨"
+    comment:
+      "Plus de 13 000 chaînes, c'est incroyable ! Je trouve tout ce que je veux regarder. L'installation a été très simple.",
+    avatar: "👨",
   },
   {
     name: "Sami Aouad",
     rating: 5,
-    comment: "Le meilleur service IPTV que j'ai testé. Aucun problème de buffering et les chaînes sont toujours disponibles.",
-    avatar: "👨‍🦱"
-  }
+    comment:
+      "Le meilleur service IPTV que j'ai testé. Aucun problème de buffering et les chaînes sont toujours disponibles.",
+    avatar: "👨‍🦱",
+  },
 ];
 
 export function Testimonials() {
@@ -35,7 +38,7 @@ export function Testimonials() {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
-            <Card 
+            <Card
               key={testimonial.name}
               className="p-6 shadow-card hover:shadow-glow transition-all duration-300 hover:scale-105"
               style={{ animationDelay: `${index * 200}ms` }}
@@ -46,12 +49,17 @@ export function Testimonials() {
                   <h3 className="font-semibold">{testimonial.name}</h3>
                   <div className="flex">
                     {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-400 fill-current" />
+                      <Star
+                        key={i}
+                        className="h-4 w-4 text-yellow-400 fill-current"
+                      />
                     ))}
                   </div>
                 </div>
               </div>
-              <p className="text-muted-foreground italic">"{testimonial.comment}"</p>
+              <p className="text-muted-foreground italic">
+                &ldquo;{testimonial.comment}&rdquo;
+              </p>
             </Card>
           ))}
         </div>

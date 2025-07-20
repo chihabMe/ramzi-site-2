@@ -1,5 +1,12 @@
 import { Card } from "@/components/ui/card";
-import { Monitor, Smartphone, Tablet, Tv, Laptop, Gamepad2 } from "lucide-react";
+import {
+  Monitor,
+  Smartphone,
+  Tablet,
+  Tv,
+  Laptop,
+  Gamepad2,
+} from "lucide-react";
 
 const devices = [
   { name: "Smart TV", icon: Tv, supported: true },
@@ -17,15 +24,18 @@ export function DeviceCompatibility() {
     <section className="py-20 bg-gradient-secondary">
       <div className="container px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">IPTV Pro utilisable sur tous vos appareils</h2>
+          <h2 className="text-4xl font-bold mb-4">
+            IPTV Pro utilisable sur tous vos appareils
+          </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Regardez vos contenus préférés où que vous soyez, sur n'importe quel appareil
+            Regardez vos contenus préférés où que vous soyez, sur n&apos;importe
+            quel appareil
           </p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6 max-w-6xl mx-auto mb-12">
           {devices.map((device, index) => (
-            <Card 
+            <Card
               key={device.name}
               className="p-6 text-center shadow-card hover:shadow-glow transition-all duration-300 hover:scale-105 bg-card"
               style={{ animationDelay: `${index * 100}ms` }}
@@ -39,7 +49,9 @@ export function DeviceCompatibility() {
         <div className="text-center">
           <div className="inline-flex items-center px-6 py-3 bg-primary/10 rounded-full">
             <div className="w-3 h-3 bg-green-500 rounded-full mr-3"></div>
-            <span className="text-sm font-medium">Compatible avec tous les appareils populaires</span>
+            <span className="text-sm font-medium">
+              Compatible avec tous les appareils populaires
+            </span>
           </div>
         </div>
       </div>

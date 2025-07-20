@@ -9,7 +9,6 @@ import { Label } from "@/components/ui/label";
 import {
   Mail,
   Phone,
-  MapPin,
   Clock,
   MessageCircle,
   Send,
@@ -274,7 +273,7 @@ export function ContactSection() {
         <div className="text-center mt-16">
           <Card className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
             <h3 className="text-2xl font-bold mb-4">
-              Besoin d'aide immédiate ?
+              Besoin d&apos;aide immédiate ?
             </h3>
             <p className="text-muted-foreground mb-6">
               Notre équipe de support technique est disponible 24h/24 pour vous

@@ -68,7 +68,7 @@ export function Header() {
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <Button className="bg-gradient-primary hover:opacity-90 transition-opacity">
-            S'abonner
+            S&apos;abonner
           </Button>
         </div>
       </nav>
@@ -123,7 +123,7 @@ export function Header() {
                 </div>
                 <div className="py-6">
                   <Button className="w-full bg-gradient-primary hover:opacity-90 transition-opacity">
-                    S'abonner
+                    S&apos;abonner
                   </Button>
                 </div>
               </div>

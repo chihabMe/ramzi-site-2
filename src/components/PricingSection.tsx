@@ -60,7 +60,7 @@ export function PricingSection() {
     duration: string
   ) => {
     const phoneNumber = "1234567890"; // Replace with your WhatsApp number
-    const message = `Bonjour! Je suis intéressé(e) par l'abonnement IPTV ${planName} à ${price}€ pour ${duration}. Pouvez-vous m'aider à finaliser mon abonnement? Merci!`;
+    const message = `Bonjour! Je suis intéressé(e) par l&apos;abonnement IPTV ${planName} à ${price}€ pour ${duration}. Pouvez-vous m&apos;aider à finaliser mon abonnement? Merci!`;
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
       message
     )}`;
@@ -80,8 +80,8 @@ export function PricingSection() {
         <div className="text-center mb-16">
           <h2 className="text-4xl font-bold mb-4">Choisissez votre plan</h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Sélectionnez l'abonnement qui correspond le mieux à vos besoins de
-            divertissement
+            Sélectionnez l&apos;abonnement qui correspond le mieux à vos besoins
+            de divertissement
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export function PricingSection() {
                 }
               >
                 <span className="flex items-center justify-center">
-                  S'abonner
+                  S&apos;abonner
                   <svg
                     className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
