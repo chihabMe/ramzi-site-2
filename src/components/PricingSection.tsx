@@ -123,11 +123,7 @@ export function PricingSection() {
               </ul>
 
               <Button
-                className={`w-full py-3 px-6 font-semibold text-base cursor-pointer transition-all duration-300 transform ${
-                  plan.popular
-                    ? "bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black text-white shadow-lg hover:shadow-xl  hover:-translate-y-1 ring-2 ring-gray-600/50"
-                    : "bg-gradient-to-r from-gray-700 to-gray-800 hover:from-gray-800 hover:to-gray-900 text-white shadow-lg hover:shadow-xl  hover:-translate-y-1"
-                } active:scale-95`}
+                className={`w-full cursor-pointer bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg transition-all duration-300 active:scale-95`}
                 onClick={() =>
                   handleSubscribe(plan.name, plan.price, plan.duration)
                 }

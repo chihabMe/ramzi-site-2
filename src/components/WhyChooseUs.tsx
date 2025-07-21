@@ -64,7 +64,7 @@ export function WhyChooseUs() {
         <div className="relative max-w-6xl mx-auto">
           {/* Central image/visual */}
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-64 h-64 bg-gradient-primary rounded-full flex items-center justify-center shadow-glow">
+            <div className="w-64 h-64 bg-gradient-primary rounded-full items-center justify-center shadow-glow hidden md:flex">
               <div className="text-center text-white">
                 <div className="text-6xl mb-2">👩‍💼</div>
                 <h3 className="text-lg font-bold">IPTV Pro</h3>
@@ -74,23 +74,13 @@ export function WhyChooseUs() {
           </div>
 
           {/* Feature cards positioned around the circle */}
-          <div className="relative h-[600px] md:h-[500px]">
-            {features.map((feature, index) => {
-              const positions = {
-                "top-left": "top-0 left-0 md:top-8 md:left-8",
-                "top-right": "top-0 right-0 md:top-8 md:right-8",
-                "middle-left": "top-1/2 left-0 -translate-y-1/2 md:left-0",
-                "middle-right": "top-1/2 right-0 -translate-y-1/2 md:right-0",
-                "bottom-left": "bottom-0 left-0 md:bottom-8 md:left-8",
-                "bottom-right": "bottom-0 right-0 md:bottom-8 md:right-8",
-              };
-
-              return (
+          <div className="relative h-auto md:h-[500px]">
+            {/* Mobile grid layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:hidden">
+              {features.map((feature, index) => (
                 <Card
                   key={feature.title}
-                  className={`absolute w-full max-w-xs p-6 bg-card shadow-card hover:shadow-glow transition-all duration-300 hover:scale-105 ${
-                    positions[feature.position as keyof typeof positions]
-                  }`}
+                  className="w-full p-6 bg-card shadow-card hover:shadow-glow transition-all duration-300 hover:scale-105"
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
                   <div className="text-center">
@@ -103,8 +93,42 @@ export function WhyChooseUs() {
                     </p>
                   </div>
                 </Card>
-              );
-            })}
+              ))}
+            </div>
+
+            {/* Desktop positioned layout */}
+            <div className="hidden md:block">
+              {features.map((feature, index) => {
+                const positions = {
+                  "top-left": "top-0 left-0 md:top-8 md:left-8",
+                  "top-right": "top-0 right-0 md:top-8 md:right-8",
+                  "middle-left": "top-1/2 left-0 -translate-y-1/2 md:left-0",
+                  "middle-right": "top-1/2 right-0 -translate-y-1/2 md:right-0",
+                  "bottom-left": "bottom-0 left-0 md:bottom-8 md:left-8",
+                  "bottom-right": "bottom-0 right-0 md:bottom-8 md:right-8",
+                };
+
+                return (
+                  <Card
+                    key={feature.title}
+                    className={`absolute w-full max-w-xs p-6 bg-card shadow-card hover:shadow-glow transition-all duration-300 hover:scale-105 ${
+                      positions[feature.position as keyof typeof positions]
+                    }`}
+                    style={{ animationDelay: `${index * 200}ms` }}
+                  >
+                    <div className="text-center">
+                      <div className="mb-4">
+                        <feature.icon className="h-8 w-8 text-primary mx-auto" />
+                      </div>
+                      <h3 className="font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

@@ -108,9 +108,11 @@ export function Header() {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Button className="bg-gradient-primary hover:opacity-90 transition-opacity text-sm xl:text-base px-4 xl:px-6">
-              S&apos;abonner
-            </Button>
+            <Link href="/#tarifs">
+              <Button className="bg-gradient-primary hover:opacity-90 transition-opacity text-sm xl:text-base px-4 xl:px-6">
+                S&apos;abonner
+              </Button>
+            </Link>
           </div>
         </nav>
       </div>
@@ -200,12 +202,14 @@ export function Header() {
                     }}
                     className="pt-12 mt-12"
                   >
-                    <Button
-                      className="bg-gradient-to-r cursor-pointer transition-all duration-200 from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg w-full h-12 rounded-md"
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      S&apos;abonner
-                    </Button>
+                    <Link href="/#tarifs">
+                      <Button
+                        className="bg-gradient-to-r cursor-pointer transition-all duration-200 from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg w-full h-12 rounded-md"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        S&apos;abonner
+                      </Button>
+                    </Link>
                   </motion.div>
                 </div>
               </motion.div>

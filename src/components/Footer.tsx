@@ -1,5 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Tv, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import {
+  Tv,
+  Mail,
+  Phone,
+  MapPin,
+  Facebook,
+  Twitter,
+  Instagram,
+  Youtube,
+} from "lucide-react";
 
 const quickLinks = [
   { name: "Accueil", href: "#" },
@@ -25,7 +34,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-foreground text-background container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="container px-4 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -35,7 +44,8 @@ export function Footer() {
               <span className="text-2xl font-bold">IPTV Pro</span>
             </div>
             <p className="text-background/70 mb-6">
-              Votre solution complète pour le divertissement en streaming avec plus de 13 000 chaînes.
+              Votre solution complète pour le divertissement en streaming avec
+              plus de 13 000 chaînes.
             </p>
             <div className="space-y-2 text-sm">
               <div className="flex items-center">
@@ -59,7 +69,10 @@ export function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-background/70 hover:text-primary transition-colors">
+                  <a
+                    href={link.href}
+                    className="text-background/70 hover:text-primary transition-colors"
+                  >
                     {link.name}
                   </a>
                 </li>
@@ -73,7 +86,10 @@ export function Footer() {
             <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-background/70 hover:text-primary transition-colors">
+                  <a
+                    href={link.href}
+                    className="text-background/70 hover:text-primary transition-colors"
+                  >
                     {link.name}
                   </a>
                 </li>
@@ -97,7 +113,7 @@ export function Footer() {
                 OK
               </Button>
             </div>
-            
+
             {/* Social Links */}
             <div className="flex space-x-3 mb-6">
               {socialLinks.map((social) => (
