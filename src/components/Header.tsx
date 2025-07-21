@@ -146,7 +146,7 @@ export function Header() {
               className="fixed inset-0 h-[100vh] z-50 overflow-y-auto bg-white transform"
             >
               {/* Mobile menu header - Only close button */}
-              <div className="flex items-center justify-end px-6 pt-8 pb-4">
+              <div className="flex items-center justify-end px-6 pt-6 md:pt-8 pb-2 md:pb-4">
                 <motion.button
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -165,9 +165,9 @@ export function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15, duration: 0.3 }}
-                className="flex flex-col justify-center h-[calc(100vh-120px)] px-6"
+                className="flex  flex-col justify-center h-[calc(100vh-120px)] px-6"
               >
-                <div className="space-y-1 max-w-sm mx-auto w-full">
+                <div className="space-y-1  max-w-sm mx-auto w-full">
                   {/* Navigation Links */}
                   {navigation.map((item, index) => {
                     const Component = item.isRoute ? Link : "a";
@@ -183,7 +183,7 @@ export function Header() {
                       >
                         <Component
                           href={item.href}
-                          className="block hover:underline transition-all duration-200 px-4 py-6 text-xl font-medium text-foreground text-center hover:text-primary"
+                          className="block hover:underline  transition-all duration-200 px-4 py-3 md:py-6 text-xl font-medium text-foreground text-center hover:text-primary"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {item.name}
@@ -200,7 +200,7 @@ export function Header() {
                       delay: 0.2 + navigation.length * 0.05 + 0.1,
                       duration: 0.3,
                     }}
-                    className="pt-12 mt-12"
+                    className="py-2 md:pt-12 mt-6"
                   >
                     <Link href="/#tarifs">
                       <Button
