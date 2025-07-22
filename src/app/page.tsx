@@ -6,6 +6,7 @@ import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { PricingSection } from "@/components/PricingSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { DeviceCompatibility } from "@/components/DeviceCompatibility";
+import { IPTVPlayersSection } from "@/components/IPTVPlayersSection";
 import { Testimonials } from "@/components/Testimonials";
 import { BlogSection } from "@/components/BlogSection";
 import { Footer } from "@/components/Footer";
@@ -22,6 +23,7 @@ export default function Home() {
         <PricingSection />
         <HowItWorks />
         <DeviceCompatibility />
+        <IPTVPlayersSection />
         <Testimonials />
         <BlogSection />
         {/* <ContactSection /> */}
