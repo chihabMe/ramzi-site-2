@@ -1,17 +1,8 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import * as motion from "motion/react-m";
-import {
-  Film,
-  Tv,
-  Trophy,
-  Calendar,
-  Star,
-  Play,
-  Clock,
-  Globe,
-} from "lucide-react";
+import * as motion from "motion/react-m"; // IGNORE
+import { Film, Tv, Trophy, Star, Play, Clock, Globe } from "lucide-react";
 
 const contentCategories = [
   {

@@ -5,9 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Tv } from "lucide-react";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
-import * as motion from "motion/react-m";
 import { AnimatePresence } from "motion/react";
-
+import * as motion from "motion/react-m"; // IGNORE
 const navigation = [
   { name: "Accueil", href: "/", isRoute: true },
   { name: "Tarifs", href: "#tarifs", isRoute: false },

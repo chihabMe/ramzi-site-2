@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import * as motion from "motion/react-m";
+import * as motion from "motion/react-m"; // IGNORE
 import { Check, PlayCircle } from "lucide-react";
 
 const iptvPlayers = [

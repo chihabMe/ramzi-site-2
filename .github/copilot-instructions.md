@@ -147,11 +147,11 @@ All content is in **French** - maintain this when generating:
 
 ## Framer motion instructions
 
-i am using the latest versoin of framer motion so please follow this instructions when using framer motion:
+i am using the latest version of framer motion so please follow this instructions when using framer motion:
 how to import it
 
 ```tsx
-import * as motion from "motion/react-m";
+import { motion } from "motion/react";
 ```
 
 ## Key Files to Reference
