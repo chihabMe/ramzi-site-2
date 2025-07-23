@@ -232,7 +232,7 @@ export function FAQSection() {
                   </div>
                 </div>
                 <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-foreground to-muted-foreground bg-clip-text text-transparent">
-                  Vous avez d'autres questions ?
+                  Vous avez d&apos;autres questions ?
                 </h3>
                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto leading-relaxed">
                   Notre équipe support est disponible 24h/7j pour répondre à
