@@ -1,6 +1,7 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import * as motion from "motion/react-m"; // IGNORE
+import { motion } from "motion/react"; // IGNORE
 import { Check, PlayCircle } from "lucide-react";
 
 const iptvPlayers = [
@@ -160,9 +161,9 @@ export function IPTVPlayersSection() {
               <div className="bg-white/20 rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-3">
                 <span className="font-bold text-xl">1</span>
               </div>
-              <h4 className="font-semibold mb-2">Téléchargez l'app</h4>
+              <h4 className="font-semibold mb-2">Téléchargez l&apos;app</h4>
               <p className="text-sm opacity-90">
-                Installez votre lecteur IPTV préféré depuis l'App Store
+                Installez votre lecteur IPTV préféré depuis l&apos;App Store
               </p>
             </div>
 
@@ -172,7 +173,8 @@ export function IPTVPlayersSection() {
               </div>
               <h4 className="font-semibold mb-2">Ajoutez vos identifiants</h4>
               <p className="text-sm opacity-90">
-                Entrez l'URL M3U et les identifiants que nous vous fournissons
+                Entrez l&apos;URL M3U et les identifiants que nous vous
+                fournissons
               </p>
             </div>
 

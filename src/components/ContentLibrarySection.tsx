@@ -1,7 +1,8 @@
+"use client";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import * as motion from "motion/react-m"; // IGNORE
+import { motion } from "motion/react"; // IGNORE
 import { Film, Tv, Trophy, Star, Play, Clock, Globe } from "lucide-react";
 
 const contentCategories = [
@@ -169,7 +170,7 @@ export function ContentLibrarySection() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          {popularContent.map((section, index) => (
+          {popularContent.map((section) => (
             <Card key={section.category} className="p-6">
               <h4 className="font-bold text-lg mb-4 text-primary">
                 {section.category}
@@ -215,7 +216,7 @@ export function ContentLibrarySection() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {liveEvents.map((event, index) => (
+            {liveEvents.map((event) => (
               <div key={event.name} className="bg-white/10 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <Badge
@@ -246,7 +247,7 @@ export function ContentLibrarySection() {
               Accès instantané à tout ce contenu
             </h3>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Avec un seul abonnement IPTV Pro, débloquez l'accès à notre
+              Avec un seul abonnement IPTV Pro, débloquez l&apos;accès à notre
               bibliothèque complète. Films récents, séries populaires et sports
               en direct, tout en qualité HD/4K.
             </p>

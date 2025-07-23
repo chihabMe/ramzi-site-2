@@ -6,12 +6,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
-import {
-  getPosts,
-  getImageUrl,
-  getRecentPosts,
-  type PostPreview,
-} from "@/sanity";
+import { getImageUrl, getRecentPosts, type PostPreview } from "@/sanity";
 
 // Type for fallback articles
 interface FallbackArticle {
@@ -109,12 +104,12 @@ export function BlogSection() {
   };
 
   // Helper function to calculate reading time
-  const getReadingTime = (content: any): number => {
-    // Simple reading time calculation - can be improved
-    if (!content) return 5;
-    const words = JSON.stringify(content).split(/\s+/).length;
-    return Math.ceil(words / 200); // Average reading speed
-  };
+  // const getReadingTime = (content: any): number => {
+  //   // Simple reading time calculation - can be improved
+  //   if (!content) return 5;
+  //   const words = JSON.stringify(content).split(/\s+/).length;
+  //   return Math.ceil(words / 200); // Average reading speed
+  // };
   return (
     <section id="blog" className="py-20 bg-slate-50">
       <div className="container px-4">

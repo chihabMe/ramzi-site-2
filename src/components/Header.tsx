@@ -6,7 +6,7 @@ import { Menu, X, Tv } from "lucide-react";
 import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatePresence } from "motion/react";
-import * as motion from "motion/react-m"; // IGNORE
+import { motion } from "motion/react"; // IGNORE
 const navigation = [
   { name: "Accueil", href: "/", isRoute: true },
   { name: "Tarifs", href: "#tarifs", isRoute: false },
