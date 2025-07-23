@@ -22,8 +22,8 @@ const plans = [
   },
   {
     name: "Basic",
-    price: "19,99",
-    duration: "1 mois",
+    price: "45",
+    duration: "12 mois",
     popular: false,
     features: [
       "5000+ chaînes",
@@ -35,8 +35,8 @@ const plans = [
   },
   {
     name: "Premium",
-    price: "49,99",
-    duration: "3 mois",
+    price: "55",
+    duration: "12 mois",
     popular: true,
     features: [
       "10000+ chaînes",
@@ -50,8 +50,8 @@ const plans = [
   },
   {
     name: "VIP",
-    price: "79,99",
-    duration: "6 mois",
+    price: "75",
+    duration: "12 mois",
     popular: false,
     features: [
       "13000+ chaînes",
