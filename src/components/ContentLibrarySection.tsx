@@ -95,7 +95,7 @@ const liveEvents = [
 
 export function ContentLibrarySection() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-8 md:py-14 bg-background">
       <div className="container px-4">
         <motion.div
           className="text-center mb-16"
@@ -217,7 +217,10 @@ export function ContentLibrarySection() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {liveEvents.map((event) => (
-              <div key={event.name} className="bg-white/10 rounded-lg p-4">
+              <div
+                key={event.name}
+                className="bg-white/10 text-black rounded-lg p-4"
+              >
                 <div className="flex items-center justify-between mb-2">
                   <Badge
                     variant={event.live ? "destructive" : "secondary"}
