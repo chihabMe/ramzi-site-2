@@ -9,8 +9,8 @@ import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react"; // IGNORE
 const navigation = [
   { name: "Accueil", href: "/", isRoute: true },
+  { name: "Chaînes", href: "/channels", isRoute: true },
   { name: "Tarifs", href: "/#tarifs", isRoute: false },
-  { name: "Chaînes", href: "/#chaines", isRoute: false },
   { name: "Avis clients", href: "/#avis", isRoute: false },
   { name: "Fonctionnement", href: "/#fonctionnement", isRoute: false },
   { name: "FAQ", href: "/#faq", isRoute: false },
