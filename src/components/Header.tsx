@@ -9,11 +9,11 @@ import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react"; // IGNORE
 const navigation = [
   { name: "Accueil", href: "/", isRoute: true },
-  { name: "Tarifs", href: "#tarifs", isRoute: false },
-  { name: "Chaînes", href: "#chaines", isRoute: false },
-  { name: "Avis clients", href: "#avis", isRoute: false },
-  { name: "Fonctionnement", href: "#fonctionnement", isRoute: false },
-  { name: "FAQ", href: "#faq", isRoute: false },
+  { name: "Tarifs", href: "/#tarifs", isRoute: false },
+  { name: "Chaînes", href: "/#chaines", isRoute: false },
+  { name: "Avis clients", href: "/#avis", isRoute: false },
+  { name: "Fonctionnement", href: "/#fonctionnement", isRoute: false },
+  { name: "FAQ", href: "/#faq", isRoute: false },
   { name: "Blog", href: "/blogs", isRoute: true },
   { name: "Contact", href: "/contact", isRoute: true },
 ];

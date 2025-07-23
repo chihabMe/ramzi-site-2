@@ -10,6 +10,7 @@ import { DeviceCompatibility } from "@/components/DeviceCompatibility";
 import { IPTVPlayersSection } from "@/components/IPTVPlayersSection";
 import { Testimonials } from "@/components/Testimonials";
 import { BlogSection } from "@/components/BlogSection";
+import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
         <DeviceCompatibility />
         <IPTVPlayersSection />
         <Testimonials />
+        <FAQSection />
         <BlogSection />
         {/* <ContactSection /> */}
       </main>
