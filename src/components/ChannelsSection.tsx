@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tv,
   Search,
@@ -23,7 +23,6 @@ import {
   Users,
   Clock,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import channelsData from "@/data/channels.json";
 
@@ -212,7 +211,7 @@ export function ChannelsSection() {
                 <TabsTrigger
                   key={category.id}
                   value={category.id}
-                  className="flex flex-col items-center gap-1 py-3 px-2 data-[state=active]:bg-gradient-primary data-[state=active]:text-white rounded-lg min-w-0 whitespace-nowrap"
+                  className="flex flex-col items-center gap-1 py-3 px-2 data-[state=active]:bg-blue-500 data-[state=active]:text-white rounded-lg min-w-0 whitespace-nowrap"
                 >
                   <category.icon className="h-4 w-4 flex-shrink-0" />
                   <span className="text-xs font-medium truncate w-full text-center">
