@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react"; // IGNORE
+import Image from "next/image";
 const navigation = [
   { name: "Accueil", href: "/", isRoute: true },
   { name: "Chaînes", href: "/channels", isRoute: true },
@@ -61,10 +62,14 @@ export function Header() {
           {/* Logo Section */}
           <div className="flex lg:flex-1">
             <Link href="/" className="-m-1.5 p-1.5 flex items-center space-x-2">
-              <Tv className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary" />
-              <span className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-                IPTV Pro
-              </span>
+              <Image
+                src="/logo.png"
+                alt="IPTV Pro Logo"
+                width={120}
+                height={120}
+                className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 xl:bg-blue-500 xl:h-28 2xl:h-32 max-w-full"
+                priority
+              />
             </Link>
           </div>
 
