@@ -56,7 +56,7 @@ const plans = [
     features: [
       "13000+ chaînes",
       "Qualité HD/4K/8K",
-      "5 appareils simultanés",
+      "3 appareils simultanés",
       "Support VIP 24/7",
       "Films et séries illimités",
       "Toutes chaînes premium",
