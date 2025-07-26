@@ -65,9 +65,9 @@ export function Header() {
               <Image
                 src="/logo.png"
                 alt="IPTV Pro Logo"
-                width={120}
-                height={120}
-                className="h-12 w-auto sm:h-16 md:h-20 lg:h-24 xl:bg-blue-500 xl:h-28 2xl:h-32 max-w-full"
+                width={190}
+                height={190}
+                className="h-12 w-auto sm:h-16 md:h-20 lg:h-20 "
                 priority
               />
             </Link>
