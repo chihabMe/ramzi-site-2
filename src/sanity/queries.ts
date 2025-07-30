@@ -184,3 +184,90 @@ export const recentPostsQuery = `*[_type == "post"] | order(publishedAt desc) [0
   publishedAt,
   "excerpt": array::join(string::split((pt::text(body))[0..255], "")[0..255], "") + "..."
 }`;
+
+// Get site settings (contact info, etc.)
+export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
+  _id,
+  title,
+  description,
+  contactInfo,
+  businessHours
+}`;
+
+// Get all active pricing plans
+export const pricingPlansQuery = `*[_type == "pricing" && isActive == true] | order(order asc) {
+  _id,
+  name,
+  description,
+  price,
+  features,
+  isPopular,
+  order,
+  ctaText,
+  ctaUrl,
+  specifications
+}`;
+
+// Get a specific pricing plan by ID
+export const pricingPlanByIdQuery = `*[_type == "pricing" && _id == $id][0] {
+  _id,
+  name,
+  description,
+  price,
+  features,
+  isPopular,
+  isActive,
+  order,
+  ctaText,
+  ctaUrl,
+  specifications
+}`;
+
+// Get all active FAQ items
+export const faqQuery = `*[_type == "faq" && isActive == true] | order(order asc) {
+  _id,
+  question,
+  answer,
+  category,
+  order,
+  tags
+}`;
+
+// Get FAQ items by category
+export const faqByCategoryQuery = `*[_type == "faq" && isActive == true && category == $category] | order(order asc) {
+  _id,
+  question,
+  answer,
+  category,
+  order,
+  tags
+}`;
+
+// Get all active testimonials
+export const testimonialsQuery = `*[_type == "testimonial" && isActive == true] | order(order asc) {
+  _id,
+  name,
+  location,
+  avatar,
+  testimonial,
+  rating,
+  plan,
+  isFeatured,
+  order,
+  submittedAt,
+  platform
+}`;
+
+// Get featured testimonials
+export const featuredTestimonialsQuery = `*[_type == "testimonial" && isActive == true && isFeatured == true] | order(order asc) {
+  _id,
+  name,
+  location,
+  avatar,
+  testimonial,
+  rating,
+  plan,
+  order,
+  submittedAt,
+  platform
+}`;

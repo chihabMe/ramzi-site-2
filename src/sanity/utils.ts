@@ -11,8 +11,25 @@ import {
   newsletterSubscribersQuery,
   newsletterByEmailQuery,
   recentPostsQuery,
+  siteSettingsQuery,
+  pricingPlansQuery,
+  pricingPlanByIdQuery,
+  faqQuery,
+  faqByCategoryQuery,
+  testimonialsQuery,
+  featuredTestimonialsQuery,
 } from "./queries";
-import { Post, PostPreview, Author, Category, Newsletter } from "./types";
+import {
+  Post,
+  PostPreview,
+  Author,
+  Category,
+  Newsletter,
+  SiteSettings,
+  PricingPlan,
+  FAQ,
+  Testimonial,
+} from "./types";
 
 // Fetch all posts
 export async function getPosts(): Promise<PostPreview[]> {
@@ -301,5 +318,77 @@ export async function checkEmailSubscription(
   } catch (error) {
     console.error("Error checking email subscription:", error);
     return null;
+  }
+}
+
+// Fetch site settings (contact info, etc.)
+export async function getSiteSettings(): Promise<SiteSettings | null> {
+  try {
+    return await client.fetch(siteSettingsQuery);
+  } catch (error) {
+    console.error("Error fetching site settings:", error);
+    return null;
+  }
+}
+
+// Fetch all active pricing plans
+export async function getPricingPlans(): Promise<PricingPlan[]> {
+  try {
+    return await client.fetch(pricingPlansQuery);
+  } catch (error) {
+    console.error("Error fetching pricing plans:", error);
+    return [];
+  }
+}
+
+// Fetch a specific pricing plan by ID
+export async function getPricingPlanById(
+  id: string
+): Promise<PricingPlan | null> {
+  try {
+    return await client.fetch(pricingPlanByIdQuery, { id });
+  } catch (error) {
+    console.error("Error fetching pricing plan by ID:", error);
+    return null;
+  }
+}
+
+// Fetch all active FAQ items
+export async function getFAQ(): Promise<FAQ[]> {
+  try {
+    return await client.fetch(faqQuery);
+  } catch (error) {
+    console.error("Error fetching FAQ:", error);
+    return [];
+  }
+}
+
+// Fetch FAQ items by category
+export async function getFAQByCategory(category: string): Promise<FAQ[]> {
+  try {
+    return await client.fetch(faqByCategoryQuery, { category });
+  } catch (error) {
+    console.error("Error fetching FAQ by category:", error);
+    return [];
+  }
+}
+
+// Fetch all active testimonials
+export async function getTestimonials(): Promise<Testimonial[]> {
+  try {
+    return await client.fetch(testimonialsQuery);
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+}
+
+// Fetch featured testimonials only
+export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
+  try {
+    return await client.fetch(featuredTestimonialsQuery);
+  } catch (error) {
+    console.error("Error fetching featured testimonials:", error);
+    return [];
   }
 }

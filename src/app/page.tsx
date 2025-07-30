@@ -12,8 +12,22 @@ import { Testimonials } from "@/components/Testimonials";
 import { BlogSection } from "@/components/BlogSection";
 import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
+import {
+  getSiteSettings,
+  getPricingPlans,
+  getFAQ,
+  getFeaturedTestimonials,
+} from "@/sanity";
 
-export default function Home() {
+export default async function Home() {
+  // Fetch dynamic data
+  const [siteSettings, pricingPlans, faqs, testimonials] = await Promise.all([
+    getSiteSettings(),
+    getPricingPlans(),
+    getFAQ(),
+    getFeaturedTestimonials(),
+  ]);
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -23,16 +37,16 @@ export default function Home() {
         <QualitySection />
         <ContentLibrarySection />
         <WhyChooseUs />
-        <PricingSection />
+        <PricingSection pricingPlans={pricingPlans} />
         <HowItWorks />
         <DeviceCompatibility />
         <IPTVPlayersSection />
-        <Testimonials />
-        <FAQSection />
+        <Testimonials testimonials={testimonials} />
+        <FAQSection faqs={faqs} />
         <BlogSection />
         {/* <ContactSection /> */}
       </main>
-      <Footer />
+      <Footer siteSettings={siteSettings} />
     </div>
   );
 }

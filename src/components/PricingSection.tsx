@@ -1,225 +1,352 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Check, Star } from "lucide-react";
+import { Check, Star, X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { motion } from "motion/react";
+import { type PricingPlan } from "@/sanity";
 
-const plans = [
-  {
-    name: "Essai Gratuit",
-    price: "0",
-    duration: "24 heures",
-    popular: false,
-    isFree: true,
-    features: [
-      "1000+ chaînes",
-      "Qualité HD",
-      "1 appareil",
-      "Accès limité 24h",
-      "Films et séries populaires",
-      "Aucun engagement",
-    ],
-  },
-  {
-    name: "Basic",
-    price: "45",
-    duration: "12 mois",
-    popular: false,
-    features: [
-      "5000+ chaînes",
-      "Qualité HD",
-      "1 appareil simultané",
-      "Support par email",
-      "Films et séries",
-    ],
-  },
-  {
-    name: "Premium",
-    price: "55",
-    duration: "12 mois",
-    popular: true,
-    features: [
-      "10000+ chaînes",
-      "Qualité HD/4K",
-      "3 appareils simultanés",
-      "Support prioritaire",
-      "Films et séries",
-      "Chaînes premium",
-      "Enregistrement cloud",
-    ],
-  },
-  {
-    name: "VIP",
-    price: "75",
-    duration: "12 mois",
-    popular: false,
-    features: [
-      "13000+ chaînes",
-      "Qualité HD/4K/8K",
-      "3 appareils simultanés",
-      "Support VIP 24/7",
-      "Films et séries illimités",
-      "Toutes chaînes premium",
-      "Enregistrement cloud illimité",
-      "Accès anticipé nouveautés",
-    ],
-  },
-];
+interface PricingSectionProps {
+  pricingPlans?: PricingPlan[];
+}
 
-export function PricingSection() {
+export function PricingSection({ pricingPlans = [] }: PricingSectionProps) {
   const { toast } = useToast();
 
-  const handleSubscribe = (
-    planName: string,
-    price: string,
-    duration: string,
-    isFree?: boolean
-  ) => {
-    const phoneNumber = "1234567890"; // Replace with your WhatsApp number
-    let message;
+  const formatPrice = (plan: PricingPlan) => {
+    const { amount, currency, period } = plan.price;
 
-    if (isFree) {
-      message = `Bonjour! Je souhaiterais bénéficier de l'essai gratuit IPTV de 24 heures. Pouvez-vous m'envoyer les détails de connexion? Merci!`;
-    } else {
-      message = `Bonjour! Je suis intéressé(e) par l'abonnement IPTV ${planName} à ${price}€ pour ${duration}. Pouvez-vous m'aider à finaliser mon abonnement? Merci!`;
-    }
+    const currencySymbol =
+      {
+        EUR: "€",
+        USD: "$",
+        MAD: "DH",
+        GBP: "£",
+      }[currency] || currency;
 
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
-      message
-    )}`;
+    const periodText =
+      {
+        monthly: "mois",
+        quarterly: "3 mois",
+        yearly: "an",
+        lifetime: "à vie",
+      }[period] || period;
 
-    // Open WhatsApp in a new tab
-    window.open(whatsappUrl, "_blank");
-
-    toast({
-      title: isFree ? "Demande d'essai gratuit" : "Redirection vers WhatsApp",
-      description: isFree
-        ? "Votre demande d'essai gratuit va être traitée via WhatsApp."
-        : `Vous allez être redirigé vers WhatsApp pour finaliser votre abonnement ${planName}.`,
-    });
+    return { amount, symbol: currencySymbol, period: periodText };
   };
 
+  const handleSubscribe = (plan: PricingPlan) => {
+    if (plan.ctaUrl) {
+      window.open(plan.ctaUrl, "_blank");
+    } else {
+      toast({
+        title: "Abonnement sélectionné",
+        description: `Vous avez choisi le plan ${plan.name}`,
+      });
+    }
+  };
+
+  // Fallback static plans if no dynamic data
+  const fallbackPlans = [
+    {
+      _id: "fallback-1",
+      _type: "pricing" as const,
+      name: "Essai Gratuit",
+      description: "Testez notre service gratuitement",
+      price: {
+        amount: 0,
+        currency: "EUR" as const,
+        period: "monthly" as const,
+      },
+      isPopular: false,
+      isActive: true,
+      order: 1,
+      ctaText: "Essayer gratuitement",
+      features: [
+        { feature: "1000+ chaînes", included: true },
+        { feature: "Qualité HD", included: true },
+        { feature: "1 appareil", included: true },
+        { feature: "Accès limité 24h", included: true },
+        { feature: "Films et séries populaires", included: true },
+        { feature: "Aucun engagement", included: true },
+      ],
+      specifications: {
+        channels: "1000+",
+        quality: "HD" as const,
+        devices: "1",
+        support: "email" as const,
+      },
+    },
+    {
+      _id: "fallback-2",
+      _type: "pricing" as const,
+      name: "Basic",
+      description: "Plan idéal pour débuter",
+      price: {
+        amount: 45,
+        currency: "EUR" as const,
+        period: "yearly" as const,
+      },
+      isPopular: false,
+      isActive: true,
+      order: 2,
+      ctaText: "S'abonner",
+      features: [
+        { feature: "5000+ chaînes", included: true },
+        { feature: "Qualité HD", included: true },
+        { feature: "1 appareil simultané", included: true },
+        { feature: "Support par email", included: true },
+        { feature: "Films et séries", included: true },
+      ],
+      specifications: {
+        channels: "5000+",
+        quality: "HD" as const,
+        devices: "1",
+        support: "email" as const,
+      },
+    },
+    {
+      _id: "fallback-3",
+      _type: "pricing" as const,
+      name: "Premium",
+      description: "Le plus populaire",
+      price: {
+        amount: 55,
+        currency: "EUR" as const,
+        period: "yearly" as const,
+      },
+      isPopular: true,
+      isActive: true,
+      order: 3,
+      ctaText: "S'abonner",
+      features: [
+        { feature: "10000+ chaînes", included: true },
+        { feature: "Qualité HD/4K", included: true },
+        { feature: "3 appareils simultanés", included: true },
+        { feature: "Support prioritaire", included: true },
+        { feature: "Films et séries", included: true },
+        { feature: "Chaînes premium", included: true },
+        { feature: "Enregistrement cloud", included: true },
+      ],
+      specifications: {
+        channels: "10000+",
+        quality: "4K" as const,
+        devices: "3",
+        support: "24_7" as const,
+      },
+    },
+    {
+      _id: "fallback-4",
+      _type: "pricing" as const,
+      name: "VIP",
+      description: "L'expérience ultime",
+      price: {
+        amount: 75,
+        currency: "EUR" as const,
+        period: "yearly" as const,
+      },
+      isPopular: false,
+      isActive: true,
+      order: 4,
+      ctaText: "S'abonner",
+      features: [
+        { feature: "13000+ chaînes", included: true },
+        { feature: "Qualité HD/4K/8K", included: true },
+        { feature: "5 appareils simultanés", included: true },
+        { feature: "Support VIP 24/7", included: true },
+        { feature: "Films et séries premium", included: true },
+        { feature: "Chaînes adultes", included: true },
+        { feature: "PPV événements sportifs", included: true },
+        { feature: "Enregistrement illimité", included: true },
+      ],
+      specifications: {
+        channels: "13000+",
+        quality: "4K" as const,
+        devices: "5",
+        support: "24_7" as const,
+      },
+    },
+  ];
+
+  // Use dynamic plans if available, otherwise use fallback
+  const plansToShow = pricingPlans.length > 0 ? pricingPlans : fallbackPlans;
+
   return (
-    <section id="tarifs" className="py-20 bg-gradient-secondary">
-      <div className="container px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Choisissez votre plan</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Sélectionnez l&apos;abonnement qui correspond le mieux à vos besoins
-            de divertissement
+    <section id="tarifs" className="py-24 bg-background">
+      <div className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Choisissez votre plan IPTV
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Des solutions adaptées à tous vos besoins de divertissement
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
-            <Card
-              key={plan.name}
-              className={`relative p-6 ${
-                plan.popular
-                  ? "border-primary shadow-glow ring-2 ring-primary"
-                  : plan.isFree
-                  ? "border-green-500 shadow-glow ring-2 ring-green-500 bg-green-50 dark:bg-green-950/10"
-                  : "shadow-card hover:shadow-glow"
-              } transition-all duration-300 hover:scale-105`}
-              style={{ animationDelay: `${index * 150}ms` }}
-            >
-              {plan.popular && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                    <Star className="h-4 w-4 mr-1" />
-                    Plus populaire
-                  </div>
-                </div>
-              )}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {plansToShow.map((plan, index) => {
+            const priceInfo = formatPrice(plan);
 
-              {plan.isFree && (
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium flex items-center">
-                    <svg
-                      className="h-4 w-4 mr-1"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12z"
-                      />
-                    </svg>
-                    Essai Gratuit
-                  </div>
-                </div>
-              )}
-
-              <div className="text-center mb-6">
-                <h3 className="text-xl font-bold mb-2">{plan.name}</h3>
-                <div
-                  className={`text-3xl font-bold mb-1 ${
-                    plan.isFree ? "text-green-600" : "text-primary"
+            return (
+              <motion.div
+                key={plan._id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <Card
+                  className={`p-8 h-full flex flex-col relative transition-all duration-300 hover:shadow-lg ${
+                    plan.isPopular
+                      ? "border-2 border-primary shadow-xl scale-105"
+                      : "border"
                   }`}
                 >
-                  {plan.isFree ? "GRATUIT" : `${plan.price}€`}
-                </div>
-                <p className="text-sm text-muted-foreground">{plan.duration}</p>
-              </div>
+                  {plan.isPopular && (
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                      <div className="bg-gradient-primary text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center space-x-1">
+                        <Star className="h-4 w-4" />
+                        <span>Populaire</span>
+                      </div>
+                    </div>
+                  )}
 
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-start">
-                    <Check className="h-5 w-5 text-primary mt-0.5 mr-3 flex-shrink-0" />
-                    <span className="text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+                  <div className="text-center mb-8">
+                    <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                    {plan.description && (
+                      <p className="text-muted-foreground text-sm mb-4">
+                        {plan.description}
+                      </p>
+                    )}
+                    <div className="mb-4">
+                      <span className="text-4xl font-bold">
+                        {priceInfo.amount === 0 ? "Gratuit" : priceInfo.amount}
+                      </span>
+                      {priceInfo.amount > 0 && (
+                        <>
+                          <span className="text-xl">{priceInfo.symbol}</span>
+                          <span className="text-muted-foreground">
+                            /{priceInfo.period}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  </div>
 
-              <Button
-                className={`w-full cursor-pointer ${
-                  plan.isFree
-                    ? "bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700"
-                    : "bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700"
-                } font-semibold px-8 py-6 text-lg shadow-lg transition-all duration-300 active:scale-95`}
-                onClick={() =>
-                  handleSubscribe(
-                    plan.name,
-                    plan.price,
-                    plan.duration,
-                    plan.isFree
-                  )
-                }
-              >
-                <span className="flex items-center justify-center">
-                  {plan.isFree ? "Essayer Gratuitement" : "S'abonner"}
-                  <svg
-                    className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                  <div className="flex-1">
+                    {/* Technical Specifications */}
+                    {plan.specifications && (
+                      <div className="mb-6 p-4 bg-muted/30 rounded-lg">
+                        <h4 className="font-semibold mb-3 text-sm">
+                          Spécifications:
+                        </h4>
+                        <div className="space-y-2 text-sm">
+                          {plan.specifications.channels && (
+                            <div className="flex justify-between">
+                              <span>Chaînes:</span>
+                              <span className="font-medium">
+                                {plan.specifications.channels}
+                              </span>
+                            </div>
+                          )}
+                          {plan.specifications.quality && (
+                            <div className="flex justify-between">
+                              <span>Qualité:</span>
+                              <span className="font-medium">
+                                {plan.specifications.quality}
+                              </span>
+                            </div>
+                          )}
+                          {plan.specifications.devices && (
+                            <div className="flex justify-between">
+                              <span>Appareils:</span>
+                              <span className="font-medium">
+                                {plan.specifications.devices}
+                              </span>
+                            </div>
+                          )}
+                          {plan.specifications.support && (
+                            <div className="flex justify-between">
+                              <span>Support:</span>
+                              <span className="font-medium">
+                                {plan.specifications.support === "24_7"
+                                  ? "24/7"
+                                  : plan.specifications.support === "business"
+                                  ? "Heures ouvrables"
+                                  : "Email uniquement"}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Features */}
+                    {plan.features && plan.features.length > 0 && (
+                      <ul className="space-y-3 mb-8">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li
+                            key={featureIndex}
+                            className="flex items-start space-x-3"
+                          >
+                            {feature.included ? (
+                              <Check className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0" />
+                            ) : (
+                              <X className="h-5 w-5 text-red-500 mt-0.5 flex-shrink-0" />
+                            )}
+                            <span
+                              className={`text-sm ${
+                                feature.included
+                                  ? "text-foreground"
+                                  : "text-muted-foreground line-through"
+                              }`}
+                            >
+                              {feature.feature}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+
+                  <Button
+                    onClick={() => handleSubscribe(plan)}
+                    className={`w-full mt-auto ${
+                      plan.isPopular
+                        ? "bg-gradient-primary hover:opacity-90"
+                        : "bg-primary hover:bg-primary/90"
+                    }`}
+                    size="lg"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </Button>
-            </Card>
-          ))}
+                    {plan.ctaText || "S'abonner"}
+                  </Button>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground mb-2">
-            Tous nos plans incluent une garantie satisfait ou remboursé de 7
-            jours
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-muted-foreground mb-6">
+            Besoin d&apos;aide pour choisir ? Contactez notre équipe
           </p>
-          <p className="text-xs text-muted-foreground">
-            🎁 <strong>Essai gratuit de 24 heures</strong> • Aucune carte
-            bancaire requise • Accès instantané
-          </p>
-        </div>
+          <Button variant="outline" size="lg">
+            Contacter le support
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

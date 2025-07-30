@@ -2,7 +2,18 @@
 export { client } from "./client";
 
 // Types
-export type { Post, PostPreview, Author, Category, Newsletter } from "./types";
+// Types
+export type {
+  Post,
+  PostPreview,
+  Author,
+  Category,
+  Newsletter,
+  SiteSettings,
+  PricingPlan,
+  FAQ,
+  Testimonial,
+} from "./types";
 
 // Data fetching functions
 export {
@@ -22,6 +33,13 @@ export {
   subscribeToNewsletter,
   getNewsletterSubscribers,
   checkEmailSubscription,
+  getSiteSettings,
+  getPricingPlans,
+  getPricingPlanById,
+  getFAQ,
+  getFAQByCategory,
+  getTestimonials,
+  getFeaturedTestimonials,
 } from "./utils";
 
 // GROQ queries (if you need them directly)
@@ -37,4 +55,11 @@ export {
   newsletterSubscribersQuery,
   newsletterByEmailQuery,
   recentPostsQuery,
+  siteSettingsQuery,
+  pricingPlansQuery,
+  pricingPlanByIdQuery,
+  faqQuery,
+  faqByCategoryQuery,
+  testimonialsQuery,
+  featuredTestimonialsQuery,
 } from "./queries";

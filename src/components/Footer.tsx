@@ -8,7 +8,9 @@ import {
   Twitter,
   Instagram,
   Youtube,
+  MessageCircle,
 } from "lucide-react";
+import { type SiteSettings } from "@/sanity";
 
 const quickLinks = [
   { name: "Accueil", href: "#" },
@@ -25,14 +27,26 @@ const legalLinks = [
 ];
 
 const paymentMethods = ["💳", "🏦", "💰", "📱"];
-const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" },
-  { name: "YouTube", icon: Youtube, href: "#" },
-];
 
-export function Footer() {
+interface FooterProps {
+  siteSettings?: SiteSettings | null;
+}
+
+export function Footer({ siteSettings }: FooterProps) {
+  const getSocialIcon = (platform: string) => {
+    switch (platform) {
+      case "facebook":
+        return Facebook;
+      case "twitter":
+        return Twitter;
+      case "instagram":
+        return Instagram;
+      case "youtube":
+        return Youtube;
+      default:
+        return Mail;
+    }
+  };
   return (
     <footer className="bg-foreground text-background container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="container px-4 py-16">
@@ -41,25 +55,41 @@ export function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Tv className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold">IPTV Pro</span>
+              <span className="text-2xl font-bold">
+                {siteSettings?.title || "IPTV Pro"}
+              </span>
             </div>
             <p className="text-background/70 mb-6">
-              Votre solution complète pour le divertissement en streaming avec
-              plus de 13 000 chaînes.
+              {siteSettings?.description ||
+                "Votre solution complète pour le divertissement en streaming avec plus de 13 000 chaînes."}
             </p>
+
+            {/* Dynamic Contact Info */}
             <div className="space-y-2 text-sm">
-              <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-primary" />
-                <span>contact@iptvpro.fr</span>
-              </div>
-              <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-primary" />
-                <span>+33 1 23 45 67 89</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2 text-primary" />
-                <span>Paris, France</span>
-              </div>
+              {siteSettings?.contactInfo?.email && (
+                <div className="flex items-center">
+                  <Mail className="h-4 w-4 mr-2 text-primary" />
+                  <span>{siteSettings.contactInfo.email}</span>
+                </div>
+              )}
+              {siteSettings?.contactInfo?.phone && (
+                <div className="flex items-center">
+                  <Phone className="h-4 w-4 mr-2 text-primary" />
+                  <span>{siteSettings.contactInfo.phone}</span>
+                </div>
+              )}
+              {siteSettings?.contactInfo?.whatsapp && (
+                <div className="flex items-center">
+                  <MessageCircle className="h-4 w-4 mr-2 text-primary" />
+                  <span>WhatsApp: {siteSettings.contactInfo.whatsapp}</span>
+                </div>
+              )}
+              {siteSettings?.contactInfo?.address && (
+                <div className="flex items-center">
+                  <MapPin className="h-4 w-4 mr-2 text-primary" />
+                  <span>{siteSettings.contactInfo.address}</span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -114,17 +144,26 @@ export function Footer() {
               </Button>
             </div>
 
-            {/* Social Links */}
+            {/* Dynamic Social Links */}
             <div className="flex space-x-3 mb-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
+              {siteSettings?.contactInfo?.socialLinks &&
+                Object.entries(siteSettings.contactInfo.socialLinks).map(
+                  ([platform, url]) => {
+                    if (!url) return null;
+                    const IconComponent = getSocialIcon(platform);
+                    return (
+                      <a
+                        key={platform}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 bg-background/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+                      >
+                        <IconComponent className="h-5 w-5" />
+                      </a>
+                    );
+                  }
+                )}
             </div>
 
             {/* Payment Methods */}
@@ -144,7 +183,7 @@ export function Footer() {
         <div className="border-t border-background/20 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-background/70 text-sm mb-4 md:mb-0">
-              © 2024 IPTV Pro. Tous droits réservés.
+              © 2024 {siteSettings?.title || "IPTV Pro"}. Tous droits réservés.
             </p>
             <div className="flex items-center space-x-4 text-sm text-background/70">
               <span>🇫🇷 Français</span>
