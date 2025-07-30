@@ -119,25 +119,22 @@ export default defineType({
     select: {
       title: "name",
       subtitle: "testimonial",
-      media: "avatar",
       rating: "rating",
       featured: "isFeatured",
     },
     prepare(selection: {
       title?: string;
       subtitle?: string;
-      media?: any;
       rating?: number;
       featured?: boolean;
     }) {
-      const { title, subtitle, media, rating, featured } = selection;
+      const { title, subtitle, rating, featured } = selection;
       const stars = "⭐".repeat(rating || 0);
       return {
         title: `${title || "Customer"}${featured ? " (Featured)" : ""}`,
         subtitle: `${stars} - ${subtitle?.slice(0, 60) || "No testimonial"}${
           subtitle && subtitle.length > 60 ? "..." : ""
         }`,
-        media,
       };
     },
   },

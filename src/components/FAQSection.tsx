@@ -14,11 +14,9 @@ import {
 import {
   HelpCircle,
   MessageCircle,
-  ChevronDown,
   Tv,
   Wifi,
   Shield,
-  Clock,
   CreditCard,
   Smartphone,
 } from "lucide-react";
