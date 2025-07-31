@@ -17,16 +17,23 @@ import {
   getPricingPlans,
   getFAQ,
   getFeaturedTestimonials,
+  getRecentPosts,
 } from "@/sanity";
+
+// Force dynamic rendering to ensure fresh data
+export const dynamic = "force-dynamic";
+export const revalidate = 0; // Disable caching for real-time updates
 
 export default async function Home() {
   // Fetch dynamic data
-  const [siteSettings, pricingPlans, faqs, testimonials] = await Promise.all([
-    getSiteSettings(),
-    getPricingPlans(),
-    getFAQ(),
-    getFeaturedTestimonials(),
-  ]);
+  const [siteSettings, pricingPlans, faqs, testimonials, recentPosts] =
+    await Promise.all([
+      getSiteSettings(),
+      getPricingPlans(),
+      getFAQ(),
+      getFeaturedTestimonials(),
+      getRecentPosts(4),
+    ]);
 
   return (
     <div className="min-h-screen">
@@ -43,7 +50,7 @@ export default async function Home() {
         <IPTVPlayersSection />
         <Testimonials testimonials={testimonials} />
         <FAQSection faqs={faqs} />
-        <BlogSection />
+        <BlogSection posts={recentPosts} />
         {/* <ContactSection /> */}
       </main>
       <Footer siteSettings={siteSettings} />

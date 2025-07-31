@@ -34,7 +34,14 @@ import {
 // Fetch all posts
 export async function getPosts(): Promise<PostPreview[]> {
   try {
-    return await client.fetch(postsQuery);
+    return await client.fetch(
+      postsQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching posts:", error);
     return [];
@@ -46,7 +53,14 @@ export async function getRecentPosts(
   limit: number = 4
 ): Promise<PostPreview[]> {
   try {
-    return await client.fetch(recentPostsQuery, { limit });
+    return await client.fetch(
+      recentPostsQuery,
+      { limit },
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching recent posts:", error);
     return [];
@@ -56,7 +70,14 @@ export async function getRecentPosts(
 // Fetch a single post by slug
 export async function getPostBySlug(slug: string): Promise<Post | null> {
   try {
-    return await client.fetch(postBySlugQuery, { slug });
+    return await client.fetch(
+      postBySlugQuery,
+      { slug },
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching post by slug:", error);
     return null;
@@ -324,7 +345,14 @@ export async function checkEmailSubscription(
 // Fetch site settings (contact info, etc.)
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   try {
-    return await client.fetch(siteSettingsQuery);
+    return await client.fetch(
+      siteSettingsQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching site settings:", error);
     return null;
@@ -334,7 +362,14 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
 // Fetch all active pricing plans
 export async function getPricingPlans(): Promise<PricingPlan[]> {
   try {
-    return await client.fetch(pricingPlansQuery);
+    return await client.fetch(
+      pricingPlansQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching pricing plans:", error);
     return [];
@@ -346,7 +381,14 @@ export async function getPricingPlanById(
   id: string
 ): Promise<PricingPlan | null> {
   try {
-    return await client.fetch(pricingPlanByIdQuery, { id });
+    return await client.fetch(
+      pricingPlanByIdQuery,
+      { id },
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching pricing plan by ID:", error);
     return null;
@@ -356,7 +398,14 @@ export async function getPricingPlanById(
 // Fetch all active FAQ items
 export async function getFAQ(): Promise<FAQ[]> {
   try {
-    return await client.fetch(faqQuery);
+    return await client.fetch(
+      faqQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching FAQ:", error);
     return [];
@@ -366,7 +415,14 @@ export async function getFAQ(): Promise<FAQ[]> {
 // Fetch FAQ items by category
 export async function getFAQByCategory(category: string): Promise<FAQ[]> {
   try {
-    return await client.fetch(faqByCategoryQuery, { category });
+    return await client.fetch(
+      faqByCategoryQuery,
+      { category },
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching FAQ by category:", error);
     return [];
@@ -376,7 +432,14 @@ export async function getFAQByCategory(category: string): Promise<FAQ[]> {
 // Fetch all active testimonials
 export async function getTestimonials(): Promise<Testimonial[]> {
   try {
-    return await client.fetch(testimonialsQuery);
+    return await client.fetch(
+      testimonialsQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching testimonials:", error);
     return [];
@@ -386,7 +449,14 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 // Fetch featured testimonials only
 export async function getFeaturedTestimonials(): Promise<Testimonial[]> {
   try {
-    return await client.fetch(featuredTestimonialsQuery);
+    return await client.fetch(
+      featuredTestimonialsQuery,
+      {},
+      {
+        cache: "no-store",
+        next: { revalidate: 0 },
+      }
+    );
   } catch (error) {
     console.error("Error fetching featured testimonials:", error);
     return [];

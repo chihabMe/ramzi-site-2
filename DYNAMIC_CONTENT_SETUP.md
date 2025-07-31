@@ -1,6 +1,46 @@
-# Dynamic Content Setup Guide
+# Dynamic Content Setup for Production
 
-Your IPTV website is now configured to use dynamic content from Sanity CMS. Here's how to set it up:
+## Overview
+
+This document explains the changes made to ensure that content from Sanity CMS is dynamically loaded in production and updates automatically when content is changed in the studio.
+
+## 🔧 Changes Made
+
+### 1. Disabled CDN Caching
+
+- **File**: `src/sanity/client.ts`
+- **Change**: Set `useCdn: false` to ensure fresh content instead of cached responses
+- **Impact**: All Sanity queries now fetch the latest data directly from the API
+
+### 2. Force Dynamic Rendering
+
+- **Files**: All page components (`src/app/page.tsx`, `src/app/channels/page.tsx`, `src/app/contact/page.tsx`)
+- **Change**: Added `export const dynamic = 'force-dynamic'` and `export const revalidate = 0`
+- **Impact**: Pages are rendered on each request instead of being statically generated
+
+### 3. Server-Side Data Fetching
+
+- **File**: `src/app/page.tsx`
+- **Change**: Moved blog post fetching to server-side and pass data as props to components
+- **Impact**: BlogSection now receives fresh data on each page load
+
+### 4. Updated BlogSection Component
+
+- **File**: `src/components/BlogSection.tsx`
+- **Change**: Converted from client-side fetching to props-based rendering
+- **Impact**: Eliminates additional client-side API calls and ensures fresh content
+
+### 5. No-Cache Fetch Options
+
+- **File**: `src/sanity/utils.ts`
+- **Change**: Added `{ cache: 'no-store', next: { revalidate: 0 } }` to all fetch calls
+- **Impact**: Prevents Next.js from caching Sanity responses
+
+### 6. Webhook Revalidation API
+
+- **File**: `src/app/api/revalidate/route.ts` (new)
+- **Purpose**: Receives webhooks from Sanity to trigger revalidation when content changes
+- **Security**: Protected with webhook secret authentication
 
 ## 🚀 Access Sanity Studio
 
