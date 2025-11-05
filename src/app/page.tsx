@@ -8,15 +8,13 @@ import { PricingSection } from "@/components/PricingSection";
 import { HowItWorks } from "@/components/HowItWorks";
 import { DeviceCompatibility } from "@/components/DeviceCompatibility";
 import { IPTVPlayersSection } from "@/components/IPTVPlayersSection";
-import { Testimonials } from "@/components/Testimonials";
 import { BlogSection } from "@/components/BlogSection";
-import { FAQSection } from "@/components/FAQSection";
+// import { FAQSection } from "@/components/FAQSection";
 import { Footer } from "@/components/Footer";
 import {
   getSiteSettings,
   getPricingPlans,
-  getFAQ,
-  getFeaturedTestimonials,
+  // getFAQ,
   getRecentPosts,
 } from "@/sanity";
 
@@ -26,32 +24,52 @@ export const revalidate = 0; // Disable caching for real-time updates
 
 export default async function Home() {
   // Fetch dynamic data
-  const [siteSettings, pricingPlans, faqs, testimonials, recentPosts] =
-    await Promise.all([
-      getSiteSettings(),
-      getPricingPlans(),
-      getFAQ(),
-      getFeaturedTestimonials(),
-      getRecentPosts(4),
-    ]);
+  const [siteSettings, pricingPlans, recentPosts] = await Promise.all([
+    getSiteSettings(),
+    getPricingPlans(),
+    getRecentPosts(4),
+  ]);
 
   return (
     <div className="min-h-screen">
       <Header />
       <main className="container max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <HeroSection />
-        <PopularChannels />
-        <QualitySection />
-        <ContentLibrarySection />
-        <WhyChooseUs />
-        <PricingSection pricingPlans={pricingPlans} />
-        <HowItWorks />
-        <DeviceCompatibility />
-        <IPTVPlayersSection />
-        <Testimonials testimonials={testimonials} />
-        <FAQSection faqs={faqs} />
-        <BlogSection posts={recentPosts} />
-        {/* <ContactSection /> */}
+        <section id="accueil" className="scroll-mt-16">
+          <HeroSection />
+        </section>
+        <section id="chaines" className="scroll-mt-16">
+          <PopularChannels />
+        </section>
+        <section id="tarifs" className="scroll-mt-16">
+          <PricingSection pricingPlans={pricingPlans} />
+        </section>
+        <section id="qualite" className="scroll-mt-16">
+          <QualitySection />
+        </section>
+        <section id="bibliotheque" className="scroll-mt-16">
+          <ContentLibrarySection />
+        </section>
+        <section id="avantages" className="scroll-mt-16">
+          <WhyChooseUs />
+        </section>
+        <section id="comment-ca-marche" className="scroll-mt-16">
+          <HowItWorks />
+        </section>
+        <section id="compatibilite" className="scroll-mt-16">
+          <DeviceCompatibility />
+        </section>
+        <section id="lecteurs" className="scroll-mt-16">
+          <IPTVPlayersSection />
+        </section>
+        {/* <section id="faq" className="scroll-mt-16">
+          <FAQSection faqs={faqs} />
+        </section> */}
+        {/* <section id="blog" className="scroll-mt-16">
+          <BlogSection posts={recentPosts} />
+        </section> */}
+        {/* <section id="contact" className="scroll-mt-16">
+          <ContactSection />
+        </section> */}
       </main>
       <Footer siteSettings={siteSettings} />
     </div>

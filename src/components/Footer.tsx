@@ -13,10 +13,12 @@ import {
 import { type SiteSettings } from "@/sanity";
 
 const quickLinks = [
-  { name: "Accueil", href: "#" },
+  { name: "Accueil", href: "#accueil" },
   { name: "Tarifs", href: "#tarifs" },
   { name: "Chaînes", href: "#chaines" },
-  { name: "Support", href: "#support" },
+  { name: "Qualité", href: "#qualite" },
+  { name: "Avantages", href: "#avantages" },
+  { name: "Contact", href: "/contact" },
 ];
 
 const legalLinks = [

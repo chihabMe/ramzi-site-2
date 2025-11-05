@@ -9,13 +9,13 @@ import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react"; // IGNORE
 import Image from "next/image";
 const navigation = [
-  { name: "Accueil", href: "/", isRoute: true },
-  { name: "Chaînes", href: "/channels", isRoute: true },
-  { name: "Tarifs", href: "/#tarifs", isRoute: false },
-  { name: "Avis clients", href: "/#avis", isRoute: false },
-  { name: "Fonctionnement", href: "/#fonctionnement", isRoute: false },
-  { name: "FAQ", href: "/#faq", isRoute: false },
-  { name: "Blog", href: "/blogs", isRoute: true },
+  { name: "Accueil", href: "#accueil", isRoute: false },
+  { name: "Chaînes", href: "#chaines", isRoute: false },
+  { name: "Tarifs", href: "#tarifs", isRoute: false },
+  { name: "Qualité", href: "#qualite", isRoute: false },
+  { name: "Avantages", href: "#avantages", isRoute: false },
+  { name: "Fonctionnement", href: "#comment-ca-marche", isRoute: false },
+  { name: "Compatibilité", href: "#compatibilite", isRoute: false },
   { name: "Contact", href: "/contact", isRoute: true },
 ];
 
@@ -112,11 +112,11 @@ export function Header() {
 
           {/* Desktop CTA Button */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link href="/#tarifs">
+            <a href="#tarifs">
               <Button className="bg-gradient-primary hover:opacity-90 transition-opacity text-sm xl:text-base px-4 xl:px-6">
                 S&apos;abonner
               </Button>
-            </Link>
+            </a>
           </div>
         </nav>
       </div>
@@ -206,14 +206,14 @@ export function Header() {
                     }}
                     className="py-2 md:pt-12 mt-6"
                   >
-                    <Link href="/#tarifs">
+                    <a href="#tarifs">
                       <Button
                         className="bg-gradient-to-r cursor-pointer transition-all duration-200 from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg w-full h-12 rounded-md"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         S&apos;abonner
                       </Button>
-                    </Link>
+                    </a>
                   </motion.div>
                 </div>
               </motion.div>

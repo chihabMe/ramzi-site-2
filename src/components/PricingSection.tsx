@@ -343,9 +343,11 @@ export function PricingSection({ pricingPlans = [] }: PricingSectionProps) {
           <p className="text-muted-foreground mb-6">
             Besoin d&apos;aide pour choisir ? Contactez notre équipe
           </p>
-          <Button variant="outline" size="lg">
-            Contacter le support
-          </Button>
+          <a href="/contact">
+            <Button variant="outline" size="lg">
+              Contacter le support
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>

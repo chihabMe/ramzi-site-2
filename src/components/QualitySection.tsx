@@ -55,9 +55,14 @@ export function QualitySection() {
               ))}
             </div>
 
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90">
-              Découvrir nos forfaits
-            </Button>
+            <a href="#tarifs">
+              <Button
+                size="lg"
+                className="bg-gradient-primary hover:opacity-90"
+              >
+                Découvrir nos forfaits
+              </Button>
+            </a>
           </div>
 
           <div className="relative">

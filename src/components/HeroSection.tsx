@@ -58,8 +58,8 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0" />
-      <div className="container relative px-4 py-20 lg:py-32 overflow-hidden">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container relative px-4 py-12 sm:py-16 lg:py-32 overflow-hidden">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Content Section */}
           <motion.div
             className="max-w-4xl"
@@ -68,7 +68,7 @@ export function HeroSection() {
             transition={{ duration: 1.2, ease: "easeOut" }}
           >
             <motion.h1
-              className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl mb-6 text-slate-900"
+              className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 sm:mb-6 text-slate-900"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.3, ease: "easeOut" }}
@@ -86,7 +86,7 @@ export function HeroSection() {
             </motion.h1>
 
             <motion.p
-              className="text-xl leading-8 text-slate-700 mb-8 max-w-2xl"
+              className="text-lg sm:text-xl leading-7 sm:leading-8 text-slate-700 mb-6 sm:mb-8 max-w-2xl"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 0.9, ease: "easeOut" }}
@@ -96,7 +96,7 @@ export function HeroSection() {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 1.2, ease: "easeOut" }}
@@ -105,33 +105,39 @@ export function HeroSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="w-full sm:w-auto"
               >
-                <Button
-                  size="lg"
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-8 py-6 text-lg shadow-lg"
-                >
-                  S&apos;abonner maintenant
-                </Button>
+                <a href="#tarifs">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg shadow-lg"
+                  >
+                    S&apos;abonner maintenant
+                  </Button>
+                </a>
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                className="w-full sm:w-auto"
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 px-8 py-6 text-lg"
-                >
-                  <Play className="mr-2 h-5 w-5" />
-                  Voir les chaînes
-                </Button>
+                <a href="#chaines">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="w-full sm:w-auto border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg"
+                  >
+                    <Play className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    Voir les chaînes
+                  </Button>
+                </a>
               </motion.div>
             </motion.div>
 
             {/* Device Compatibility Icons */}
             <motion.div
-              className="flex items-center gap-6 mb-8"
+              className="hidden sm:flex items-center gap-6 mb-8"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.0, delay: 1.5, ease: "easeOut" }}
@@ -496,9 +502,47 @@ export function HeroSection() {
           </motion.div>
         </div>
 
+        {/* Mobile Stats - Simple version for mobile */}
+        <motion.div
+          className="mt-8 md:hidden"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 1.6, ease: "easeOut" }}
+        >
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <motion.div
+              className="bg-white/80 backdrop-blur rounded-lg p-4 border border-slate-200 shadow-sm"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 1.8 }}
+            >
+              <div className="text-2xl font-bold text-blue-600">13K+</div>
+              <div className="text-xs text-slate-600">Chaînes</div>
+            </motion.div>
+            <motion.div
+              className="bg-white/80 backdrop-blur rounded-lg p-4 border border-slate-200 shadow-sm"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 2.0 }}
+            >
+              <div className="text-2xl font-bold text-purple-600">4K</div>
+              <div className="text-xs text-slate-600">Qualité</div>
+            </motion.div>
+            <motion.div
+              className="bg-white/80 backdrop-blur rounded-lg p-4 border border-slate-200 shadow-sm"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 2.2 }}
+            >
+              <div className="text-2xl font-bold text-green-600">24/7</div>
+              <div className="text-xs text-slate-600">Support</div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Channel Carousel */}
         <motion.div
-          className="mt-16"
+          className="mt-8 md:mt-16 hidden md:block"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.0, delay: 1.8, ease: "easeOut" }}
